@@ -41,5 +41,5 @@ jobs:
           key: ${{ secrets.PRIVATE_KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            whoami
-            ls -al
+            chmod +x /home/hufstory/cicd/deploy.sh
+            sh /home/hufstory/cicd/deploy.sh
