@@ -38,5 +38,4 @@ public class User {
     private LocalDateTime userCreatedAt;
     @Column(nullable = false)
     private LocalDateTime githubCreatedAt;
-
 }

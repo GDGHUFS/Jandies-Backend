@@ -1,4 +1,4 @@
-package gdghufs.jandies.jwt;
+package gdghufs.jandies.unit;
 
 import gdghufs.jandies.entity.User;
 import gdghufs.jandies.repository.UserRepository;
@@ -13,11 +13,12 @@ import org.springframework.stereotype.Service;
 public final class JpaUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepository;
-
+    
     @Override
     public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
+        System.out.println("username: " + username);
         final User user = this.userRepository
-                .findById(Long.parseLong(username))
+                .findByid(Long.valueOf(username))
                 .orElseThrow(() -> new UsernameNotFoundException("Invalid authentication!"));
 
         return new CustomUserDetails(user);

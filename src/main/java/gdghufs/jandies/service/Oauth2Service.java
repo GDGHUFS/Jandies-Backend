@@ -2,12 +2,12 @@ package gdghufs.jandies.service;
 
 import gdghufs.jandies.entity.Auth;
 import gdghufs.jandies.entity.Role;
-import gdghufs.jandies.jwt.JwtProvider;
 import gdghufs.jandies.repository.AuthRepository;
 import gdghufs.jandies.repository.UserRepository;
 import gdghufs.jandies.service.callbackDto.CallbackResponse;
 import gdghufs.jandies.service.callbackDto.GithubDetailDto;
 import gdghufs.jandies.service.callbackDto.GithubTokenDto;
+import gdghufs.jandies.unit.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -25,7 +25,7 @@ import java.util.Optional;
 public class Oauth2Service {
 
     private final UserRepository userRepository;
-    private final JwtProvider jwtProvider;
+    private final JwtTokenProvider jwtTokenProvider;
     private final AuthRepository authRepository;
     RestTemplate restTemplate = new RestTemplate();
 
@@ -83,8 +83,8 @@ public class Oauth2Service {
             auth = authRepository.save(Auth.builder()
                     .user(user)
                     .tokenType("Bearer")
-                    .accessToken(jwtProvider.createToken(user.getId(), user.getRole(), "access"))
-                    .refreshToken(jwtProvider.createToken(user.getId(), user.getRole(), "refresh"))
+                    .accessToken(jwtTokenProvider.createAccessToken(user.getId(), user.getRole()))
+                    .refreshToken(jwtTokenProvider.createRefreshToken(user.getId(), user.getRole()))
                     .githubAccessToken(githubToken.getAccess_token())
                     .build());
         } else {
@@ -92,8 +92,8 @@ public class Oauth2Service {
             System.out.println(githubDetail.getLogin() + "로그인");
 
             auth = authRepository.existsByUser(user) ? authRepository.findByUser(user).get() : Auth.builder().user(user).build();
-            auth.updateAccessToken(this.jwtProvider.createToken(user.getId(), user.getRole(), "access"));
-            auth.updateRefreshToken(this.jwtProvider.createToken(user.getId(), user.getRole(), "refresh"));
+            auth.updateAccessToken(this.jwtTokenProvider.createAccessToken(user.getId(), user.getRole()));
+            auth.updateRefreshToken(this.jwtTokenProvider.createRefreshToken(user.getId(), user.getRole()));
             auth.updateGithubAccessToken(githubToken.getAccess_token());
 
             user.setAvatarUrl(githubDetail.getAvatar_url());

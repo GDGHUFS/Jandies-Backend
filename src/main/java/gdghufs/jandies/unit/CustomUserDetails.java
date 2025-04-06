@@ -1,4 +1,4 @@
-package gdghufs.jandies.jwt;
+package gdghufs.jandies.unit;
 
 import gdghufs.jandies.entity.User;
 import org.springframework.security.core.GrantedAuthority;
@@ -22,7 +22,7 @@ public record CustomUserDetails(User user) implements UserDetails {
 
     @Override
     public String getUsername() {
-        return user.getId().toString();
+        return String.valueOf(user.getId());
     }
 
     @Override
