@@ -8,7 +8,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Data
@@ -38,4 +40,13 @@ public class User {
     @OneToMany
     @JoinColumn(name = "userId", referencedColumnName = "id")
     private List<LinkTree> linkTree;
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_farm",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "farm_id")
+    )
+    private List<Farm> farms;
+
 }

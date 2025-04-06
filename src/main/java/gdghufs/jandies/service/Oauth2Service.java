@@ -77,6 +77,7 @@ public class Oauth2Service {
                     .githubId(githubDetail.getId())
                     .login(githubDetail.getLogin())
                     .email(githubDetail.getEmail())
+                    .bio(githubDetail.getBio())
                     .avatarUrl(githubDetail.getAvatar_url())
                     .build());
 

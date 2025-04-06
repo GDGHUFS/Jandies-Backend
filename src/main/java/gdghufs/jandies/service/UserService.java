@@ -17,7 +17,6 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
-
     private final LinkTreeRepository linkTreeRepository;
 
     public UserDto findById(Long userId) {
@@ -62,9 +61,9 @@ public class UserService {
         LinkTree linkTree = linkTreeRepository.findByid(linkTreeId)
                 .orElseThrow(() -> new RuntimeException("링크트리를 찾을 수 없습니다."));
 
-        if (!Objects.equals(linkTree.getUser().getId(), user.getId())) {
-            throw new RuntimeException("링크트리의 소유자가 아닙니다.");
-        }
+//        if (!Objects.equals(linkTree.getUser().getId(), user.getId())) {
+//            throw new RuntimeException("링크트리의 소유자가 아닙니다.");
+//        }
 
         linkTreeRepository.delete(linkTree);
         return true;
@@ -77,9 +76,9 @@ public class UserService {
         LinkTree linkTree = linkTreeRepository.findByid(linkTreeId)
                 .orElseThrow(() -> new RuntimeException("링크트리를 찾을 수 없습니다."));
 
-        if (!Objects.equals(linkTree.getUser().getId(), user.getId())) {
-            throw new RuntimeException("링크트리의 소유자가 아닙니다.");
-        }
+//        if (!Objects.equals(linkTree.getUser().getId(), user.getId())) {
+//            throw new RuntimeException("링크트리의 소유자가 아닙니다.");
+//        }
 
         linkTree.setLink(linkTreeDto.getLink());
         linkTree.setType(linkTreeDto.getType());

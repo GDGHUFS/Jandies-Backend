@@ -8,6 +8,7 @@ import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Getter
@@ -35,11 +36,18 @@ public class UserDto {
     private LocalDateTime githubCreatedAt;
     @Schema(description = "유저 링크트리 목록")
     private List<LinkTreeDto> linkTree;
+    @Schema(description = "유저 농장 목록")
+    private List<FarmDto> farms;
+
 
     public static UserDto fromEntity(User user) {
         List<LinkTreeDto> linkTreeDtos = user.getLinkTree().stream()
                 .map(LinkTreeDto::fromEntity)
                 .collect(Collectors.toList());
+        List<FarmDto> farmDtos = user.getFarms().stream()
+                .map(FarmDto::fromEntity)
+                .collect(Collectors.toList());
+
 
         return new UserDto(
                 user.getId(),
@@ -52,8 +60,8 @@ public class UserDto {
                 user.getRole(),
                 user.getUserCreatedAt(),
                 user.getGithubCreatedAt(),
-                linkTreeDtos
+                linkTreeDtos,
+                farmDtos
         );
     }
-
 }
