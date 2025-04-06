@@ -34,7 +34,7 @@ public final class PrincipalDetails implements UserDetails, OAuth2User {
 
     @Override
     public String getName() {
-            return user.getUsername();
+            return String.valueOf(user.getId());
     }
 
     @Override
