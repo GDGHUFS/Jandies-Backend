@@ -70,7 +70,7 @@ public class Oauth2Service {
         if (userEntity.isEmpty()) {
             System.out.println(githubDetail.getLogin() + "회원가입");
             user = userRepository.save(User.builder()
-                    .username(githubDetail.getLogin())
+                    .name(githubDetail.getName())
                     .role(Role.ROLE_USER)
                     .userCreatedAt(LocalDateTime.now())
                     .githubCreatedAt(callbackResponse.getGithubInfo().getCreated_at())
@@ -82,7 +82,6 @@ public class Oauth2Service {
 
             auth = authRepository.save(Auth.builder()
                     .user(user)
-                    .tokenType("Bearer")
                     .accessToken(jwtTokenProvider.createAccessToken(user.getId(), user.getRole()))
                     .refreshToken(jwtTokenProvider.createRefreshToken(user.getId(), user.getRole()))
                     .githubAccessToken(githubToken.getAccess_token())
@@ -96,10 +95,10 @@ public class Oauth2Service {
             auth.updateRefreshToken(this.jwtTokenProvider.createRefreshToken(user.getId(), user.getRole()));
             auth.updateGithubAccessToken(githubToken.getAccess_token());
 
-            user.setAvatarUrl(githubDetail.getAvatar_url());
-            user.setEmail(githubDetail.getEmail());
-            userRepository.save(user);
+            // 변경가능한 정보
+            user.setLogin(githubDetail.getLogin());
 
+            userRepository.save(user);
         }
         // :todo 깃허브 데이터 연동
         return AuthResponseDTO.fromEntity(auth);

@@ -20,9 +20,6 @@ public class Auth {
     private Long id;
 
     @Column(nullable = true)
-    private String tokenType;
-
-    @Column(nullable = true)
     private String accessToken;
 
     @Column(nullable = true)
@@ -46,9 +43,8 @@ public class Auth {
     public void updateGithubAccessToken(String githubAccessToken) {this.githubAccessToken = githubAccessToken;}
 
     @Builder
-    public Auth(User user, String tokenType, String accessToken, String refreshToken, String githubAccessToken) {
+    public Auth(User user, String accessToken, String refreshToken, String githubAccessToken) {
         this.user = user;
-        this.tokenType = tokenType;
         this.accessToken = accessToken;
         this.refreshToken = refreshToken;
         this.githubAccessToken = githubAccessToken;

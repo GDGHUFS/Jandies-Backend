@@ -2,15 +2,15 @@ package gdghufs.jandies.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
 @AllArgsConstructor
-public enum Role {
-    ROLE_USER("USER"),
-    ROLE_ADMIN("ADMIN");
+public enum LinkTreeType {
+    Github("github"),
+    Instagram("instagram"),
+    Naverblog("naverblog");
 
-    // GetValue
-    // "USER", "ADMIN"
     private final String value;
 
 }

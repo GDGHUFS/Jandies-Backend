@@ -19,7 +19,6 @@ public class AuthResponseDTO {
 
     @Builder
     public AuthResponseDTO(Auth entity) {
-        this.tokenType = entity.getTokenType();
         this.accessToken = entity.getAccessToken();
         this.refreshToken = entity.getRefreshToken();
         this.githubAccessToken = entity.getGithubAccessToken();

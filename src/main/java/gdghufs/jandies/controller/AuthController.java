@@ -18,8 +18,12 @@ public class AuthController {
         this.oauth2Service = oauth2Service;
     }
 
+    @GetMapping("/login")
+    public String login() {
+        return "redirect:https://github.com/login/oauth/authorize?client_id=Ov23liMuB1y8uvz4q9Bc";
+    }
+
     @GetMapping("/callback")
-    @ResponseBody
     public String callback(@RequestParam String code, HttpServletRequest request, HttpServletResponse response) {
         AuthResponseDTO authResponseDTO = oauth2Service.getAccessToken(code);
 
@@ -31,4 +35,5 @@ public class AuthController {
 
         return "redirect:http://localhost";
     }
+
 }
