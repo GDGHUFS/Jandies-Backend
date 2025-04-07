@@ -18,22 +18,24 @@ public class AuthController {
         this.oauth2Service = oauth2Service;
     }
 
+    @Operation(summary = "👑테스트 - 깃허브 리디렉션(로그인/회원가입)", tags = {"Auth"})
     @GetMapping("/login")
     public String login() {
         return "redirect:https://github.com/login/oauth/authorize?client_id=Ov23liMuB1y8uvz4q9Bc";
     }
 
+    @Operation(summary = "👑테스트 - 깃허브 로그인 콜백", tags = {"Auth"})
     @GetMapping("/callback")
     public String callback(@RequestParam String code, HttpServletRequest request, HttpServletResponse response) {
         AuthResponseDTO authResponseDTO = oauth2Service.getAccessToken(code);
 
         String accessToken = authResponseDTO.getAccessToken();
         String refreshToken = authResponseDTO.getRefreshToken();
+        
+        response.setHeader("Set-Cookie", "accessToken=" + accessToken + "; Path=/; Domain=https://jandi.es; HttpOnly; SameSite=None; Secure;");
+        response.addHeader("Set-Cookie", "refreshToken=" + refreshToken + "; Path=/; Domain=https://jandi.es; HttpOnly; SameSite=None; Secure;");
 
-        response.setHeader("Set-Cookie", "accessToken=" + accessToken + "; Path=/; Domain=localhost; HttpOnly; SameSite=None; Secure;");
-        response.addHeader("Set-Cookie", "refreshToken=" + refreshToken + "; Path=/; Domain=localhost; HttpOnly; SameSite=None; Secure;");
-
-        return "redirect:http://localhost";
+        return "redirect:https://jandi.es";
     }
 
 }
