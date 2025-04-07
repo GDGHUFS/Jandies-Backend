@@ -31,9 +31,9 @@ public class AuthController {
 
         String accessToken = authResponseDTO.getAccessToken();
         String refreshToken = authResponseDTO.getRefreshToken();
-        
-        response.setHeader("Set-Cookie", "accessToken=" + accessToken + "; Path=/; Domain=https://jandi.es; HttpOnly; SameSite=None; Secure;");
-        response.addHeader("Set-Cookie", "refreshToken=" + refreshToken + "; Path=/; Domain=https://jandi.es; HttpOnly; SameSite=None; Secure;");
+
+        response.setHeader("Set-Cookie", "accessToken=" + accessToken + "; Path=/; Domain=jandi.es; HttpOnly; SameSite=None; Secure;");
+        response.addHeader("Set-Cookie", "refreshToken=" + refreshToken + "; Path=/; Domain=jandi.es; HttpOnly; SameSite=None; Secure;");
 
         return "redirect:https://jandi.es";
     }
