@@ -10,6 +10,8 @@ import gdghufs.jandies.entity.User;
 import gdghufs.jandies.repository.FarmRepository;
 import gdghufs.jandies.repository.JandiRepository;
 import gdghufs.jandies.repository.UserRepository;
+import gdghufs.jandies.scheduler.JandiScheduler;
+import gdghufs.jandies.scheduler.job.JandiJob;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -26,13 +28,15 @@ import java.util.stream.Collectors;
 public class JandiService {
 
     private final JandiRepository jandiRepository;
+    private final JandiJob jandiJob;
+    private final UserRepository userRepository;
 
-    public List<Jandi> getAllJandi(User user) {
-        return jandiRepository.findAllById_UserId((user.getId()));
+    public void SaveAlJandiLongerThanOneDay() {
+        jandiJob.SaveAlJandiLongerThanOneDay();
     }
 
     public List<Jandi> findAllById_UserId(Long idUserId) {
-        return jandiRepository.findAllById_UserId(idUserId);
+        return jandiRepository.findAllById_UserIdOrderById_dateDesc(idUserId);
     }
 
 }

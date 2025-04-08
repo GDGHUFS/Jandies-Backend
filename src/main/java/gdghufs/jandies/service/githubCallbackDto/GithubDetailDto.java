@@ -1,4 +1,4 @@
-package gdghufs.jandies.service.callbackDto;
+package gdghufs.jandies.service.githubCallbackDto;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;

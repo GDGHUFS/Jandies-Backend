@@ -11,22 +11,18 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class AuthResponseDTO {
-    private String tokenType;
     private String accessToken;
     private String refreshToken;
     private String githubAccessToken;
 
-    @Builder
-    public AuthResponseDTO(Auth entity) {
-        this.accessToken = entity.getAccessToken();
-        this.refreshToken = entity.getRefreshToken();
-        this.githubAccessToken = entity.getGithubAccessToken();
-    }
 
     public static AuthResponseDTO fromEntity(Auth entity) {
         return AuthResponseDTO.builder()
-                .entity(entity)
+                .accessToken(entity.getAccessToken())
+                .refreshToken(entity.getRefreshToken())
+                .githubAccessToken(entity.getGithubAccessToken())
                 .build();
     }
 

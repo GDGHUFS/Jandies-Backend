@@ -4,6 +4,7 @@ import gdghufs.jandies.entity.Fortune;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDate;
 

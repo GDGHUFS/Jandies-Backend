@@ -20,4 +20,5 @@ public class Fortune {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String fortune;
+
 }

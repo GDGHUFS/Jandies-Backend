@@ -14,4 +14,8 @@ import java.util.Optional;
 public interface JandiRepository extends JpaRepository<Jandi, Long> {
 
     List<Jandi> findAllById_UserId(Long idUserId);
+
+    List<Jandi> findAllById_UserIdOrderById_date(Long idUserId);
+
+    List<Jandi> findAllById_UserIdOrderById_dateDesc(Long idUserId);
 }

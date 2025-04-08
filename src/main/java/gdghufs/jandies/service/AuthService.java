@@ -4,9 +4,9 @@ import gdghufs.jandies.entity.Auth;
 import gdghufs.jandies.entity.Role;
 import gdghufs.jandies.repository.AuthRepository;
 import gdghufs.jandies.repository.UserRepository;
-import gdghufs.jandies.service.callbackDto.CallbackResponse;
-import gdghufs.jandies.service.callbackDto.GithubDetailDto;
-import gdghufs.jandies.service.callbackDto.GithubTokenDto;
+import gdghufs.jandies.service.githubCallbackDto.CallbackResponse;
+import gdghufs.jandies.service.githubCallbackDto.GithubDetailDto;
+import gdghufs.jandies.service.githubCallbackDto.GithubTokenDto;
 import gdghufs.jandies.unit.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,7 +22,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class Oauth2Service {
+public class AuthService {
 
     private final UserRepository userRepository;
     private final JwtTokenProvider jwtTokenProvider;

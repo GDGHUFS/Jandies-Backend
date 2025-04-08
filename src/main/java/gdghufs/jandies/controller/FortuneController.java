@@ -21,8 +21,7 @@ public class FortuneController {
     @GetMapping("/fortune")
     public FortuneDto  getToday() {
         final LocalDate now = LocalDate.now();
-        Fortune fortune = fortuneService.getTodayForturn(now.getDayOfYear()-1);
-        return FortuneDto.toFarmDto(fortune);
+        return fortuneService.getTodayForturn(now.getDayOfYear()-1);
     }
 
 }
