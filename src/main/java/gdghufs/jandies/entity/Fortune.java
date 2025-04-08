@@ -9,12 +9,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
 
 @Data
 @Entity
-@NoArgsConstructor  // 기본 생성자
-@AllArgsConstructor // 모든 필드를 받는 생성자
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class Fortune {
     @Id

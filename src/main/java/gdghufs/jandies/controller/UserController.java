@@ -24,21 +24,21 @@ public class UserController {
     @ApiResponse(responseCode = "200", description = "정상적으로 사용자 정보를 반환", content = @Content(mediaType = "application/json", schema = @Schema(implementation = UserDto.class)))
     @GetMapping("/profile/{id}")
     public UserDto getUsers(@PathVariable Long id) {
-        return userService.findById(id);
+        return UserDto.fromEntity(userService.findById(id));
     }
 
     @Operation(summary = "내 정보 조회 - ❌토큰 필요", tags = {"Me"})
     @ApiResponse(responseCode = "200", description = "유저조회성공", content = @Content(mediaType = "application/json", schema = @Schema(implementation = UserDto.class)))
     @GetMapping("/profile/me")
     public UserDto getMe(Authentication authentication) {
-        return userService.findById(Long.parseLong(authentication.getName()));
+        return UserDto.fromEntity(userService.findById(Long.parseLong(authentication.getName())));
     }
 
     @Operation(summary = "내 정보 수정 - ❌토큰과 UserDto 필요", tags = {"Me"})
     @ApiResponse(responseCode = "200", description = "정상적으로 사용자 정보를 수정", content = @Content(mediaType = "application/json", schema = @Schema(implementation = UserDto.class)))
     @PutMapping("/profile/me")
     public UserDto putMe(Authentication authentication, @RequestBody UserDto userDto) {
-        return userService.updateUser(Long.valueOf(authentication.getName()), userDto);
+        return UserDto.fromEntity(userService.updateUser(Long.valueOf(authentication.getName()), userDto));
     }
 
     @Operation(summary = "유저 수 조회 - ✅전체 접근", tags = {"User"})

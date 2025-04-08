@@ -13,12 +13,12 @@ import org.springframework.stereotype.Service;
 public final class JpaUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepository;
-    
+
     @Override
     public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
         System.out.println("username: " + username);
         final User user = this.userRepository
-                .findByid(Long.valueOf(username))
+                .findById(Long.valueOf(username))
                 .orElseThrow(() -> new UsernameNotFoundException("Invalid authentication!"));
 
         return new CustomUserDetails(user);

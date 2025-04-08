@@ -12,8 +12,8 @@ import java.util.Set;
 
 @Data
 @Entity
-@NoArgsConstructor  // 기본 생성자
-@AllArgsConstructor // 모든 필드를 받는 생성자
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class Farm {
     @Id

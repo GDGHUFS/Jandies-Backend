@@ -18,7 +18,7 @@ public class FortuneController {
     private final FortuneService fortuneService;
 
     @Operation(summary = "오늘의 운세 - ✅전체 접근", tags = {"Fortune"})
-    @GetMapping("/Fortune")
+    @GetMapping("/fortune")
     public FortuneDto  getToday() {
         final LocalDate now = LocalDate.now();
         Fortune fortune = fortuneService.getTodayForturn(now.getDayOfYear()-1);

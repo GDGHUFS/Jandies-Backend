@@ -5,18 +5,17 @@ import gdghufs.jandies.service.Oauth2Service;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
+@RequiredArgsConstructor
 public class AuthController {
 
     final Oauth2Service oauth2Service;
-    public AuthController(Oauth2Service oauth2Service) {
-        this.oauth2Service = oauth2Service;
-    }
 
     @Operation(summary = "👑테스트 - 깃허브 리디렉션(로그인/회원가입)", tags = {"Auth"})
     @GetMapping("/login")

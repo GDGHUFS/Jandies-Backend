@@ -61,7 +61,7 @@ public class Oauth2Service {
         callbackResponse.setTokenInfo(githubToken);
         callbackResponse.setGithubInfo(githubDetail);
 
-        Optional<User> userEntity = userRepository.findBygithubId(githubDetail.getId());
+        Optional<User> userEntity = userRepository.findBygithubId((githubDetail.getId()));
         User user;
         Auth auth;
 
