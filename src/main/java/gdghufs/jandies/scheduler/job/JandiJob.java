@@ -77,7 +77,7 @@ public class JandiJob {
                 "query", query,
                 "variables", Map.of(
                         "userName", user.getLogin(),
-                        "from", LocalDateTime.now().atOffset(ZoneOffset.UTC).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME),
+                        "from", LocalDateTime.now().minusDays(1).atOffset(ZoneOffset.UTC).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME),
                         "to", LocalDateTime.now().atOffset(ZoneOffset.UTC).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)
                 )
         );
