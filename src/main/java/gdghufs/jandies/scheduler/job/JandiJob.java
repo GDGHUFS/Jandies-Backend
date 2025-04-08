@@ -99,6 +99,7 @@ public class JandiJob {
                 Jandi jandi = Jandi.builder()
                         .id(new JandiId(user.getId(), LocalDate.parse(day.getDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd"))))
                         .count((long) day.getContributionCount())
+                        .isActive(day.getContributionCount() != 0)
                         .build();
 
                 jandiRepository.save(jandi);
